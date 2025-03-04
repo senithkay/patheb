@@ -8,7 +8,6 @@ const http_1 = require("../utils/http");
 const common_1 = require("../utils/common");
 const whiteList = [
     "/auth/change-password",
-    ""
 ];
 const authorize = (req, res, next) => {
     var _a;

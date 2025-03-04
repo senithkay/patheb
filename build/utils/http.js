@@ -12,6 +12,7 @@ const sendResponse = (payload, res, error, statusCode) => {
     }
     else {
         if (error.errors !== undefined && error.errors !== null) {
+            console.error(error);
             const key = Object.keys(error.errors)[0];
             const cause = error.errors[key];
             res.status(500);

@@ -13,46 +13,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const Course_1 = __importDefault(require("../models/Course"));
 const http_1 = require("../utils/http");
+const Event_1 = __importDefault(require("../models/Event"));
 const router = express_1.default.Router();
-router.post("/save-course", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/save-event", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const course = new Course_1.default(req.body);
-        const savedCourse = yield course.save();
-        (0, http_1.sendResponse)(savedCourse, res, undefined, 200);
+        const event = new Event_1.default(req.body);
+        const savedEvent = yield event.save();
+        (0, http_1.sendResponse)(savedEvent, res, undefined, 200);
     }
     catch (err) {
         (0, http_1.sendResponse)(undefined, res, err, 500);
     }
     return;
 }));
-router.get("/get-courses", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/get-events", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const courses = yield Course_1.default.find();
-        (0, http_1.sendResponse)(courses, res, undefined, 200);
+        const events = yield Event_1.default.find();
+        (0, http_1.sendResponse)(events, res, undefined, 200);
     }
     catch (err) {
         (0, http_1.sendResponse)(undefined, res, err, 500);
     }
     return;
 }));
-router.put("/cancel-course:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.put("/edit-event/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
-        const updatedCourse = yield Course_1.default.findByIdAndUpdate(id, req.body, { new: true });
-        (0, http_1.sendResponse)(updatedCourse, res, undefined, 200);
-    }
-    catch (err) {
-        (0, http_1.sendResponse)(undefined, res, err, 500);
-    }
-    return;
-}));
-router.put("/edit-course/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const id = req.params.id;
-        const updatedCourse = yield Course_1.default.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
-        (0, http_1.sendResponse)(updatedCourse, res, undefined, 200);
+        const updatedEvent = yield Event_1.default.findByIdAndUpdate(id, req.body, { new: true, runValidators: true });
+        (0, http_1.sendResponse)(updatedEvent, res, undefined, 200);
     }
     catch (err) {
         (0, http_1.sendResponse)(undefined, res, err, 500);

@@ -6,6 +6,7 @@ import userRoute from "./routes/userRoute";
 import cors from 'cors'
 import {startup} from "./utils/startup";
 import courseRoute from "./routes/courseRoute";
+import eventRoute from "./routes/eventRoute";
 
 startup()
 const app = express();
@@ -19,11 +20,12 @@ app.get('/test', (req,res)=>{
 })
 app.use(cookieParser());
 app.use(express.json({ limit: '25mb' }));
-app.use(authorize);
+// app.use(authorize);
 app.use(express.static('src/public/'))
 app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/course', courseRoute);
+app.use('/event', eventRoute);
 
 app.listen(process.env.PORT || 8080,
     () => {
