@@ -7,6 +7,7 @@ import cors from 'cors'
 import {startup} from "./utils/startup";
 import courseRoute from "./routes/courseRoute";
 import eventRoute from "./routes/eventRoute";
+import appointmentRoute from "./routes/appointmentRoute";
 
 startup()
 const app = express();
@@ -26,6 +27,7 @@ app.use('/auth', authRoute);
 app.use('/user', userRoute);
 app.use('/course', courseRoute);
 app.use('/event', eventRoute);
+app.use('/appointment', appointmentRoute);
 
 app.listen(process.env.PORT || 8080,
     () => {

@@ -19,6 +19,7 @@ const router = express_1.default.Router();
 router.post("/save-course", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const course = new Course_1.default(req.body);
+        course.lastModified;
         const savedCourse = yield course.save();
         (0, http_1.sendResponse)(savedCourse, res, undefined, 200);
     }
@@ -37,10 +38,24 @@ router.get("/get-courses", (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
     return;
 }));
-router.put("/cancel-course:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.get("/get-course/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
-        const updatedCourse = yield Course_1.default.findByIdAndUpdate(id, req.body, { new: true });
+        const courses = yield Course_1.default.findById(id);
+        (0, http_1.sendResponse)(courses, res, undefined, 200);
+    }
+    catch (err) {
+        (0, http_1.sendResponse)(undefined, res, err, 500);
+    }
+    return;
+}));
+router.put("/cancel-course/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const newCourse = {
+            status: "Cancelled"
+        };
+        const updatedCourse = yield Course_1.default.findByIdAndUpdate(id, newCourse, { new: true });
         (0, http_1.sendResponse)(updatedCourse, res, undefined, 200);
     }
     catch (err) {

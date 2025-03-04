@@ -40,7 +40,7 @@ const courseSchema = new Schema({
     },
     additionalNotes: {
         type: String,
-    }
-});
+    },
+}, { timestamps: true });
 const Course = mongoose_1.default.model('Course', courseSchema);
 exports.default = Course;

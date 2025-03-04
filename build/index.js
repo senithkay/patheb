@@ -11,6 +11,7 @@ const cors_1 = __importDefault(require("cors"));
 const startup_1 = require("./utils/startup");
 const courseRoute_1 = __importDefault(require("./routes/courseRoute"));
 const eventRoute_1 = __importDefault(require("./routes/eventRoute"));
+const appointmentRoute_1 = __importDefault(require("./routes/appointmentRoute"));
 (0, startup_1.startup)();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
@@ -28,6 +29,7 @@ app.use('/auth', authRoute_1.default);
 app.use('/user', userRoute_1.default);
 app.use('/course', courseRoute_1.default);
 app.use('/event', eventRoute_1.default);
+app.use('/appointment', appointmentRoute_1.default);
 app.listen(process.env.PORT || 8080, () => {
     console.log(`[INFO] Server started on http://localhost:${process.env.PORT}`);
 });
