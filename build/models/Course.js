@@ -33,13 +33,13 @@ const courseSchema = new Schema({
         default: "Active"
     },
     prerequisites: {
-        type: Schema.Types.ObjectId,
+        type: String,
     },
     requiredMaterials: {
         type: String,
     },
     additionalNotes: {
-        type: Schema.Types.ObjectId,
+        type: String,
     }
 });
 const Course = mongoose_1.default.model('Course', courseSchema);

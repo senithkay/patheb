@@ -9,7 +9,7 @@ interface ICourse extends Document {
     instructor:string;
     description:string;
     status:string;
-    prerequisites:mongoose.Types.ObjectId;
+    prerequisites:string;
     requiredMaterials:string;
     additionalNotes:string;
 }
@@ -42,13 +42,13 @@ const courseSchema = new Schema({
         default:"Active"
     },
     prerequisites:{
-        type:Schema.Types.ObjectId,
+        type:String,
     },
     requiredMaterials:{
         type:String,
     },
     additionalNotes: {
-        type:Schema.Types.ObjectId,
+        type:String,
     }
 })
 
